@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import NetflixNavbar from './components/MyNav'
 import Footer from './components/MyFooter'
 import TVShowsHeader from './components/SubNav'
@@ -9,6 +8,7 @@ import FilmCarousel3 from './components/MainComponent3.jsx'
 import EditProfile from './components/Edit.jsx'
 import Settings from './components/Settings.jsx'
 import './App.css'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 function App() {
   const [searchQuery, setSearchQuery] = useState('')

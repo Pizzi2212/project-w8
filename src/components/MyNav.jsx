@@ -57,6 +57,19 @@ const NetflixNavbar = ({ onSearch }) => {
             <a href="#" className="nav-link text-light">
               My List
             </a>
+            <Link
+              className="d-md-none text-light text-decoration-none"
+              to="/edit"
+            >
+              Edit Profile
+            </Link>
+            <Link
+              className="d-md-none text-light text-decoration-none"
+              to="/account"
+            >
+              Settings
+            </Link>
+
             <div className="d-flex align-items-center">
               <input
                 type="text"
