@@ -72,7 +72,7 @@ class FilmCarousel3 extends Component {
                   <img
                     className="img-fluid custom-image"
                     src={film.Poster}
-                    alt="Spider-Man"
+                    alt=""
                     style={{ objectFit: 'cover' }}
                   />
                 </Col>

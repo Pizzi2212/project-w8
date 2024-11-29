@@ -1,9 +1,10 @@
 import { Component } from 'react'
-import { Row, Col, Carousel } from 'react-bootstrap'
+import { Row, Col, Carousel, Spinner } from 'react-bootstrap'
 
 class FilmCarousel2 extends Component {
   state = {
     films2: [],
+    Loading: true,
   }
 
   fetchFilms2 = () => {
@@ -18,10 +19,12 @@ class FilmCarousel2 extends Component {
       .then((data) => {
         this.setState({
           films2: data.Search,
+          Loading: false, // Finisce il caricamento
         })
       })
       .catch((e) => {
         console.log('Errore!', e)
+        this.setState({ Loading: false }) // In caso di errore disattiva il caricamento
       })
   }
 
@@ -30,7 +33,20 @@ class FilmCarousel2 extends Component {
   }
 
   render() {
-    const { films2 } = this.state
+    const { films2, Loading } = this.state
+
+    if (Loading) {
+      return (
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: '100vh' }}
+        >
+          <Spinner animation="border" role="status" variant="danger">
+            <span className="visually-hidden">Loading...</span>
+          </Spinner>
+        </div>
+      )
+    }
 
     return (
       <div className="bg-container">
@@ -50,7 +66,7 @@ class FilmCarousel2 extends Component {
                   <img
                     className="img-fluid custom-image"
                     src={film.Poster}
-                    alt="Spider-Man"
+                    alt="Film Poster"
                     style={{ objectFit: 'cover' }}
                   />
                 </Col>
@@ -72,7 +88,7 @@ class FilmCarousel2 extends Component {
                   <img
                     className="img-fluid custom-image"
                     src={film.Poster}
-                    alt="Spider-Man"
+                    alt="Film Poster"
                     style={{ objectFit: 'cover' }}
                   />
                 </Col>

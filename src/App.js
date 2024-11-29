@@ -1,28 +1,50 @@
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import NetflixNavbar from './components/MyNav'
 import Footer from './components/MyFooter'
 import TVShowsHeader from './components/SubNav'
-import './App.css'
 import FilmCarousel1 from './components/MainComponent1.jsx'
 import FilmCarousel2 from './components/MainComponent2.jsx'
 import FilmCarousel3 from './components/MainComponent3.jsx'
+import EditProfile from './components/Edit.jsx'
+import Settings from './components/Settings.jsx'
+import './App.css'
 
 function App() {
-  return (
-    <div>
-      <header>
-        <NetflixNavbar />
-      </header>
-      <main>
-        <TVShowsHeader />
+  const [searchQuery, setSearchQuery] = useState('')
 
-        <FilmCarousel1 />
-        <FilmCarousel2 />
-        <FilmCarousel3 />
-      </main>
-      <footer>
-        <Footer />
-      </footer>
-    </div>
+  const handleSearch = (query) => {
+    setSearchQuery(query)
+  }
+
+  return (
+    <Router>
+      <div>
+        <header>
+          <NetflixNavbar onSearch={handleSearch} />
+        </header>
+        <main>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <TVShowsHeader />
+                  <FilmCarousel1 searchQuery={searchQuery} />
+                  <FilmCarousel2 />
+                  <FilmCarousel3 />
+                </>
+              }
+            />
+            <Route path="/edit" element={<EditProfile />} />
+            <Route path="/account" element={<Settings />} />
+          </Routes>
+        </main>
+        <footer>
+          <Footer />
+        </footer>
+      </div>
+    </Router>
   )
 }
 
